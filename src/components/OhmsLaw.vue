@@ -25,7 +25,6 @@ const options = ref([
 
 
 const handleChange = (_evt: Event) => {
-    // evt.preventDefault();
     const val = {...form.value},
         {type, voltage, resistance, current} = val; 
     if(type === VALUES.VOLTAGE.toLocaleLowerCase()) {
@@ -36,9 +35,7 @@ const handleChange = (_evt: Event) => {
     }
     if (type === VALUES.RESISTANCE.toLocaleLowerCase()) {
         form.value.current = voltage / current;
-    }
-
-    
+    }    
 }
 
 
@@ -102,8 +99,13 @@ const handleChange = (_evt: Event) => {
 <style scoped>
 select, input, button  {
     padding: 10px 8px; 
-    margin: 10px; 
-    /* background:  var(--vt-c-black); */
+    margin: 10px;
+    min-width:165px ;
+    background:  var(--vt-c-black);
+    color: var(--vt-c-text-dark-2);
+    outline: none;
+    border: solid 1px var(--vt-c-text-dark-2);
+
 }
 .form-element > * {
     display: block;
