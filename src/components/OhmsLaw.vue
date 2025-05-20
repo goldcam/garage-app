@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
-
-const VALUES = {
-    VOLTAGE: 'Voltage',
-    RESISTANCE: 'Resistance',
-    CURRENT: 'Current', 
-} as const;
-
+import { VALUES } from '@/assets/consts';
 
 const form = ref({
   type: '',
