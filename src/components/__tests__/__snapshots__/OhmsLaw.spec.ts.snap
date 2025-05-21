@@ -1,5 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`OhmsLaw > renders output element 1`] = `
+"<section data-v-27a545ab="">
+  <form data-v-27a545ab=""><select data-v-27a545ab="">
+      <option data-v-27a545ab="" disabled="" value="">Please select value</option>
+      <option data-v-27a545ab="" value="voltage">Voltage</option>
+      <option data-v-27a545ab="" value="resistance">Resistance</option>
+      <option data-v-27a545ab="" value="current">Current</option>
+    </select>
+    <!--v-if-->
+  </form>
+</section>"
+`;
+
 exports[`OhmsLaw > renders properly 1`] = `
 "<section data-v-27a545ab="">
   <form data-v-27a545ab=""><select data-v-27a545ab="">
