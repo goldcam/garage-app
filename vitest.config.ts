@@ -12,7 +12,19 @@ export default mergeConfig(
        coverage: {
         provider: 'istanbul',
         reporter: ['text', 'json', 'html'],
+        
+        //  outputFile: {
+        //   junit: './junit-report.xml',
+        //   json: './json-report.json',
+        // },
+        //  outputFile: './test-output.json',
+        
       },
+       reporters: ['json', 'html'],
+       outputFile: {
+        json:'./output/test-output.json',
+        html: './output/test-output.html'
+      }
     },
   }),
 )

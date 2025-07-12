@@ -1,10 +1,7 @@
 import { describe, it, expect } from 'vitest';
-
 import { mount, flushPromises } from '@vue/test-utils';
 import OhmsLaw from '../OhmsLaw.vue';
 import { VALUES } from '@/assets/consts';
-
-
 describe('OhmsLaw', () => { 
   const voltageText = VALUES.VOLTAGE.toLocaleLowerCase(),
         resistanceText = VALUES.RESISTANCE.toLocaleLowerCase(),
@@ -15,44 +12,6 @@ describe('OhmsLaw', () => {
     expect(wrapper.text()).toContain('Please select value');
     wrapper.unmount();
   });
-
-  it('renders output element', async () => {    
-     const wrapper = mount(OhmsLaw);
-    expect(wrapper.html()).toMatchSnapshot();
-    expect(wrapper.text()).toContain('Please select value');
-
-    const tetsForm = {
-          type: 'voltage',
-          voltage: 0,
-          resistance: 0,
-          current: 0, 
-        };
-
-  //  await wrapper.setData({form: {type:'voltage'}});
-
-  (wrapper.vm as any).form = tetsForm;
-  console.log({vm: wrapper.vm})
-   
-  
-    // const select = wrapper.find('select');
-    // await select.setValue(voltageText);
-
-
-    const output = wrapper.find('#output');
-    // expect(output.exists()).toBe(true);   
-    // expect(output.text()).toBe('voltage: 0');
-    
-    
-    // wrapper.setData({form: {type: ''}});
-    // await select.setValue('');
-    // await flushPromises();
-    // output = wrapper.find('#output');
-    expect(output.exists()).toBe(false);  
-
-
-    wrapper.unmount();
-  });
-
   it('caluclates voltage', async () => {
     const wrapper = mount(OhmsLaw),
           select = wrapper.find('select');
@@ -61,18 +20,13 @@ describe('OhmsLaw', () => {
           currentInput = wrapper.find(`#${currentText}`), 
           resistanceInput = wrapper.find(`#${resistanceText}`),
           output = wrapper.find('#output');
-
     await resistanceInput.setValue(4);
     await resistanceInput.trigger('change');
     await currentInput.setValue(3);
     await currentInput.trigger('change');
     expect(wrapper.emitted('change')).toBeTruthy();
-
-
     await flushPromises();
-
     const inputs = wrapper.findAll('input');       
-
     expect(select.element.value).toBe(voltageText);
     expect(voltageInput.exists()).toBe(false);
     expect(currentInput.exists()).toBe(true);
@@ -146,6 +100,43 @@ describe('OhmsLaw', () => {
     expect(output.text()).toBe('resistance: 4');
     wrapper.unmount();  
   });
+
+  it('renders output element', async () => {    
+      const wrapper = mount(OhmsLaw);
+     expect(wrapper.html()).toMatchSnapshot();
+     expect(wrapper.text()).toContain('Please select value');
+ 
+     const tetsForm = {
+           type: 'voltage',
+           voltage: 0,
+           resistance: 0,
+           current: 0, 
+         };
+ 
+   //  await wrapper.setData({form: {type:'voltage'}});
+ 
+   (wrapper.vm as any).form = tetsForm;
+   console.log({vm: wrapper.vm})
+    
+   
+     // const select = wrapper.find('select');
+     // await select.setValue(voltageText);
+ 
+ 
+     const output = wrapper.find('#output');
+     // expect(output.exists()).toBe(true);   
+     // expect(output.text()).toBe('voltage: 0');
+     
+     
+     // wrapper.setData({form: {type: ''}});
+     // await select.setValue('');
+     // await flushPromises();
+     // output = wrapper.find('#output');
+     expect(output.exists()).toBe(false);  
+ 
+ 
+     wrapper.unmount();
+   });
 });
 
 
